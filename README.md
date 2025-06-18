@@ -39,7 +39,7 @@ The following **additional** features are implemented:
 
 ## Video Walkthrough
 
-Here's a walkthrough of implemented required features: "https://1drv.ms/v/c/1272c95792c3059f/EYQ9ZiPh9UZLra8AZLSfF2cBp5cmpxXl0LaqXGCdDSrLUg?e=fZit9W"
+Here's a walkthrough of implemented required features: https://1drv.ms/v/c/1272c95792c3059f/EYQ9ZiPh9UZLra8AZLSfF2cBp5cmpxXl0LaqXGCdDSrLUg?e=fZit9W
 
 <!-- Replace this with whatever GIF tool you used! -->
 GIF created with Windows Game Bar  
