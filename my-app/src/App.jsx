@@ -38,7 +38,7 @@ function App() {
       image: "src/assets/keys.jpg",
       description: "A former Reuters journalist who provided login credentials to the hacker group Anonymous, leading to unauthorized access of a Tribune website.",
       verdict: "criminal"
-    }]/*,
+    },
     {
       name: "Jonathan Grier",
       image: "src/assets/grier.jpg",
@@ -87,7 +87,7 @@ function App() {
       description: "Co-founder of Apple Inc., Wozniak was involved in phone phreaking during his youth, manipulating phone systems to make free long-distance calls.",
       verdict: "programmer"
     }
-  ]*/
+  ]
 
   const guess = (verdict, answer) => {
     setGuessed(true)
