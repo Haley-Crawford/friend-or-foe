@@ -1,13 +1,11 @@
-import { useState } from 'react'
-import { Flashcard } from './components/Flashcard';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import { NavBar } from './components/NavBar'
+import { Home } from './components/Home'
+import { Study } from './components/Study'
+import { Quiz } from './components/Quiz'
 import './App.css'
 
 function App() {
-  const [index, setIndex] = useState(0)
-  const [score, setScore] = useState(0)
-  const [guessed, setGuessed] = useState(false)
   const flashcards = [
     {
       name: "Adrian Lamo",
@@ -88,35 +86,20 @@ function App() {
       verdict: "programmer"
     }
   ]
-
-  const guess = (verdict, answer) => {
-    setGuessed(true)
-    if (verdict === answer) {
-      setScore(score + 1)
-    } 
-  }
-
-  const next = () => {
-    setGuessed(false)     
-    setIndex(index + 1)
-  }
   
   return (
     <>
-      <h1>Friend or Foe?</h1>
-      <h2>How well can you spot the difference between famous <span id='g'>computer scientists</span> and <span id='r'>career criminals</span>? Take the quiz to find out!</h2>
-      {
-        index < flashcards.length ?
-          <Flashcard person={flashcards[index]} handleGuess={guess} guessed={guessed}/>
-          : <div className='result'>
-            <p id='trophy'>🏆</p>
-            <p>You made it to the end! You scored a {(score / flashcards.length * 100).toFixed(2)}%</p>
-            <button onClick={() => setIndex(0)}>Play Again?</button>
-          </div>
-      }
-      <button className={`next ${guessed ? 'show': ''}`}>
-        <FontAwesomeIcon icon={faArrowRight} onClick={next}/>
-      </button>
+      <Router>
+        <NavBar />
+        <main>
+          <h2>Number of cards: {flashcards.length}</h2>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/study' element={<Study cards={flashcards} />} />
+            <Route path='/quiz' element={<Quiz cards={flashcards} />} />
+          </Routes>
+        </main>
+      </Router>
     </>
   )
 }

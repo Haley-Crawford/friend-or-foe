@@ -1,26 +1,26 @@
-export const Flashcard = ({person, handleGuess, guessed}) => {
-    const { name, image, description, verdict } = person
+import { useState } from 'react'
 
-    const handleClick = (e) => {
-        handleGuess(verdict, e.target.value)
+export const Flashcard = ({person, mode}) => {
+    const { name, image, description, verdict } = person
+    const [back, setBack] = useState(false)
+
+    const flip = () => {
+        setBack(!back)
     }
 
     return (
-        <div className={`card ${guessed ? 'reveal' : ''}`}>
-            <h2>Friend or Foe?</h2>
+        <div className={`card ${mode === 'study' && back ? 'flip' : ''}`} onClick={flip}>
             <div className='content'>
-                <img src={image} alt={`Image of ${name}`}/>
-                <div className='description'>
-                    <div className='overview'>
+                <div className='front'>
+                    <img src={image} alt={`Image of ${name}`}/>
+                </div>
+                <div className='back'>
+                    <div className='description'>
                         <h4>Name: {name}</h4>
                         <h4>Verdict: <span id={verdict === 'criminal' ? 'r' : 'g'}>{verdict}</span></h4>
+                        <p>{description}</p>
                     </div>
-                    <p>{description}</p>
                 </div>
-            </div>
-            <div className='guess-div'>
-                <button onClick={handleClick} value='programmer' disabled={guessed}>Programmer</button>
-                <button onClick={handleClick} value='criminal' disabled={guessed}>Criminal</button>
             </div>
         </div>
     )
