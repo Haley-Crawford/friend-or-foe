@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
 export const Quiz = ({cards}) => {
+    const [streak, setStreak] = useState(0)
     const [index, setIndex] = useState(0)
     const [score, setScore] = useState(0)
     const [guessed, setGuessed] = useState(false)
@@ -16,25 +17,45 @@ export const Quiz = ({cards}) => {
         }
 
         setGuessed(true)
-        document.getElementById('input').value = ''
+
+        const correct = cards[index].verdict === answer.toLowerCase()
+        
         document.querySelector('.card').classList.add('flip')
 
-        if (cards[index].verdict === answer.toLowerCase()) {
-            setScore(score + 1)
-        } 
+        if (correct) {
+            setScore(prev => prev + 1)
+        } else {
+            setScore(0)
+        }
+
+        if (score >= streak) {
+            setStreak(score)
+        }
+        
+        document.getElementById('input').style.borderColor = correct ? 'green' : 'red'
+        document.getElementById('input').style.backgroundColor = correct ? 'lightgreen' : 'red'
     }
+
+//TODO - make streak counter. increment index randomly
 
     const next = () => {
         document.querySelector('.card').classList.remove('flip')
         setTimeout(() => {
             setGuessed(false)     
-            setIndex(index + 1)
+            setIndex(Math.floor(Math.random() * cards.length))
+            document.getElementById('input').style.borderColor = 'inherit'
+            document.getElementById('input').style.backgroundColor = 'inherit'
+            document.getElementById('input').value = '' 
         }, 1000)
     }
 
     return (
         <>
             <h1>Quiz Time!</h1>
+            <div className='stats'>
+                <p>Current Score: <strong><em>{score}</em></strong></p>
+                <p>Longest Streak: <strong><em>{streak}</em></strong></p>
+            </div>
             <Flashcard person={cards[index]} mode='quiz'/>
             <div className='flex-gap'>
                 <div className='guess-div'>

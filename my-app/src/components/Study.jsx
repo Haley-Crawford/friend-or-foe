@@ -8,11 +8,11 @@ export const Study = ({cards}) => {
     const [flashcards, setFlashcards] = useState(cards)
 
     const prev = () => {
-        setIndex(index == 0 ? cards.length-1 : index-1)
+        setIndex(index-1)
     }
 
     const next = () => {    
-        setIndex(index == cards.length-1 ? 0 : index+1)
+        setIndex(index+1)
     }
 
     const shuffle = () => {
@@ -32,10 +32,10 @@ export const Study = ({cards}) => {
             <h1>Study Break!</h1>
             <Flashcard person={flashcards[index]} mode='study'/>
             <div className='controls-div'>
-                <button onClick={prev} className='btn'>
+                <button onClick={prev} className='btn' disabled={index === 0}>
                     <FontAwesomeIcon icon={faArrowLeft} />
                 </button>
-                <button onClick={next} className='btn'>
+                <button onClick={next} className='btn' disabled={index === cards.length-1}>
                     <FontAwesomeIcon icon={faArrowRight} />
                 </button>
                 <button onClick={shuffle} className='shuffle-btn btn'>

@@ -75,8 +75,13 @@ main {
 
 /* Flashcard */
 
+.stats {
+  display: flex;
+  gap: 3rem;
+}
+
 .btn {
-  padding: 1rem;
+  padding: 0.7rem;
   border-radius: var(--radius);
   font-size: 1rem;
 }
@@ -108,6 +113,7 @@ img {
   background: none;
   transition: all 0.8s ease;
   transform-style: preserve-3d;
+  cursor: pointer;
 }
 
 .content {
@@ -177,8 +183,9 @@ img {
   background-color: #5659ff;
 }
 
-input {
+#input {
   padding: 0 1rem;
+  font-weight: bold;
 }
 
 .next {
@@ -187,17 +194,4 @@ input {
 
 .next.show {
   visibility: visible;
-}
-
-/* Results */
-
-.result {
-  display: flex;
-  flex-direction: column;
-  place-items: center;
-  gap: 2rem;
-}
-
-#trophy {
-  font-size: 10rem;
 }

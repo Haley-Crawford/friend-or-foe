@@ -92,9 +92,8 @@ function App() {
       <Router>
         <NavBar />
         <main>
-          <h2>Number of cards: {flashcards.length}</h2>
           <Routes>
-            <Route path='/' element={<Home />} />
+            <Route path='/' element={<Home cards={flashcards} />} />
             <Route path='/study' element={<Study cards={flashcards} />} />
             <Route path='/quiz' element={<Quiz cards={flashcards} />} />
           </Routes>
